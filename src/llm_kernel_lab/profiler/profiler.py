@@ -4,10 +4,13 @@ from __future__ import annotations
 
 import time
 import uuid
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
-from llm_kernel_lab.model import HardwareProfile, KernelRun, KernelVariant, MetricSet, ProblemShape
-from llm_kernel_lab.profiler.nsight import check_ncu_available, ncu_metrics_to_metric_set, run_ncu, parse_ncu_csv
+from llm_kernel_lab.model import HardwareProfile, KernelRun, KernelVariant, ProblemShape
+from llm_kernel_lab.profiler.nsight import (
+    check_ncu_available,
+)
 from llm_kernel_lab.profiler.timing import TimingProfiler
 
 

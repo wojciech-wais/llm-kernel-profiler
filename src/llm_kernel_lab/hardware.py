@@ -89,18 +89,6 @@ def _query_nvidia_smi(device_index: int) -> dict[str, Any]:
             "driver_version": parts[1],
         }
 
-        # Try to get SM count
-        sm_result = subprocess.run(
-            [
-                "nvidia-smi",
-                f"--id={device_index}",
-                "--query-gpu=name",
-                "--format=csv,noheader",
-            ],
-            capture_output=True,
-            text=True,
-            timeout=10,
-        )
         # SM count requires deviceQuery or CUDA API; leave as 0 for now
         info["num_sms"] = 0
         info["l2_size_mb"] = 0.0

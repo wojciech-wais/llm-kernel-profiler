@@ -11,7 +11,7 @@ import click
 @click.option("--baseline", "-b", required=True, help="Path to baseline results JSON")
 @click.option("--current", "-c", required=True, help="Path to current results JSON")
 @click.option("--metric", "-m", default="runtime_ms", help="Metric to compare")
-@click.option("--max-regression", default=0.10, help="Maximum allowed regression ratio (e.g. 0.10 = 10%)")
+@click.option("--max-regression", default=0.10, help="Max allowed regression ratio (0.10 = 10%)")
 def ci(baseline: str, current: str, metric: str, max_regression: float) -> None:
     """Run regression detection for CI pipelines.
 

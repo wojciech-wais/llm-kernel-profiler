@@ -5,11 +5,7 @@ import tempfile
 from pathlib import Path
 
 from llm_kernel_lab.model import (
-    HardwareProfile,
     KernelRun,
-    KernelVariant,
-    MetricSet,
-    ProblemShape,
 )
 from llm_kernel_lab.serialization import (
     hardware_profile_from_dict,

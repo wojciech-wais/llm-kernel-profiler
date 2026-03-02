@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import time
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from llm_kernel_lab.model import MetricSet
 
@@ -95,7 +96,10 @@ def _build_timing_metrics(
     """Build a MetricSet with timing-only data (other fields zeroed)."""
     runtime_s = runtime_ms / 1000.0
     achieved_tflops = (flops / 1e12 / runtime_s) if runtime_s > 0 and flops > 0 else 0.0
-    dram_bw_gbps = (bytes_accessed / 1e9 / runtime_s) if runtime_s > 0 and bytes_accessed > 0 else 0.0
+    if runtime_s > 0 and bytes_accessed > 0:
+        dram_bw_gbps = bytes_accessed / 1e9 / runtime_s
+    else:
+        dram_bw_gbps = 0.0
     arithmetic_intensity = (flops / bytes_accessed) if bytes_accessed > 0 else 0.0
 
     return MetricSet(

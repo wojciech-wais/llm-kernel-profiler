@@ -1,7 +1,6 @@
 """Tests for configuration loading."""
 
 import tempfile
-from pathlib import Path
 
 from llm_kernel_lab.config import LabConfig, _parse_config, load_config
 

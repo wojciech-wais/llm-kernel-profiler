@@ -65,6 +65,9 @@ def get_recommendations(
         )
 
     if not recs:
-        recs.append("No specific optimization recommendations. Profile with 'full' level for detailed analysis.")
+        recs.append(
+            "No specific optimization recommendations. "
+            "Profile with 'full' level for detailed analysis."
+        )
 
     return recs

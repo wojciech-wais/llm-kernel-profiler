@@ -8,7 +8,6 @@ from pathlib import Path
 
 from llm_kernel_lab.model import HardwareProfile, KernelRun
 from llm_kernel_lab.serialization import (
-    hardware_profile_from_dict,
     hardware_profile_to_dict,
     kernel_run_from_dict,
     kernel_run_to_dict,

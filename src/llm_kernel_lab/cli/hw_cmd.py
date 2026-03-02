@@ -10,10 +10,8 @@ import click
 @click.option("--output", "-o", default=None, help="Output JSON file (prints to stdout if omitted)")
 def record_hw(device: int, output: str | None) -> None:
     """Capture hardware profile of the current machine's GPU."""
-    from llm_kernel_lab.hardware import detect_hardware, hardware_profile_to_json
-    from llm_kernel_lab.serialization import hardware_profile_to_dict
 
-    import json
+    from llm_kernel_lab.hardware import detect_hardware, hardware_profile_to_json
 
     click.echo(f"Detecting GPU hardware (device {device})...")
     hw = detect_hardware(device)

@@ -6,7 +6,6 @@ import csv
 import io
 import shutil
 import subprocess
-from pathlib import Path
 from typing import Any
 
 from llm_kernel_lab.model import MetricSet

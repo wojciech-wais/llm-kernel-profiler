@@ -73,9 +73,8 @@ def estimate_bytes_accessed(
         B = params.get("B", 1)
         H = params.get("H", 1)
         S_q = params.get("S_q", params.get("S", 1))
-        S_kv = params.get("S_kv", params.get("S", 1))
         D = params.get("D", 1)
-        # Q, K, V reads + output write
+        # Q, K, V reads + output write (K/V use S_kv but same dim for byte estimate)
         qkv_bytes = 3 * B * H * S_q * D * dtype_bytes
         out_bytes = B * H * S_q * D * dtype_bytes
         return float(qkv_bytes + out_bytes)
@@ -94,10 +93,10 @@ def estimate_bytes_accessed(
     if op_type == "mlp":
         B = params.get("B", 1)
         S = params.get("S", 1)
-        H = params.get("hidden_dim", 1)
-        I = params.get("intermediate_dim", 1)
+        hidden = params.get("hidden_dim", 1)
+        inter = params.get("intermediate_dim", 1)
         # weights + activations
-        return float((H * I * 3 + B * S * (H + I * 2 + H)) * dtype_bytes)
+        return float((hidden * inter * 3 + B * S * (hidden + inter * 2 + hidden)) * dtype_bytes)
 
     return 0.0
 

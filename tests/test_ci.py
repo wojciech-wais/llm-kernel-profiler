@@ -1,6 +1,5 @@
 """Tests for CI regression detection."""
 
-import json
 import tempfile
 from pathlib import Path
 

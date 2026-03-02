@@ -11,7 +11,9 @@ from llm_kernel_lab.profiler.metrics import (
 
 
 def test_attention_flops():
-    flops = estimate_attention_flops(batch_size=1, num_heads=32, seq_len_q=2048, seq_len_kv=2048, head_dim=128)
+    flops = estimate_attention_flops(
+        batch_size=1, num_heads=32, seq_len_q=2048, seq_len_kv=2048, head_dim=128,
+    )
     # 2 * 1 * 32 * 2048 * 2048 * 128 * 2 + softmax
     assert flops > 0
     # QK^T + attn@V ~ 2 * 2 * B*H*Sq*Skv*D

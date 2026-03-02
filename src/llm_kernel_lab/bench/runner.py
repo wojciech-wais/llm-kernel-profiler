@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
-import time
-import uuid
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from llm_kernel_lab.config import LabConfig, load_config
 from llm_kernel_lab.hardware import detect_hardware

@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 import click
 
 
 @click.command()
-@click.option("--op", required=True, help="Op type: attention, mlp, matmul, layernorm, quant_gemm, custom")
+@click.option("--op", required=True, help="Op type: attention, mlp, matmul, layernorm, quant_gemm")
 @click.option("--kernels", required=True, help="Comma-separated kernel variant IDs")
 @click.option("--shapes", required=True, help="Comma-separated problem shape IDs")
 @click.option("--repetitions", default=100, help="Number of timed iterations per benchmark")

@@ -1,7 +1,6 @@
 """Tests for JSON storage backend."""
 
 import tempfile
-from pathlib import Path
 
 from llm_kernel_lab.model import KernelRun
 from llm_kernel_lab.storage.json_store import JsonStore
