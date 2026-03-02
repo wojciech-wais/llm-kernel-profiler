@@ -24,3 +24,5 @@ cmake-build-*/
 CMakeCache.txt
 CMakeFiles/
 Makefile
+website/public/
+website/resources/

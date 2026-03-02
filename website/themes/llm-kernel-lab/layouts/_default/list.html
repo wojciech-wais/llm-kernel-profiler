@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="container">
+  <section>
+    <h2>{{ .Title }}</h2>
+    {{ range .Pages }}
+    <div style="margin-bottom: 16px;">
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 8px;">{{ .Date.Format "Jan 2, 2006" }}</span>
+    </div>
+    {{ end }}
+  </section>
+</div>
+{{ end }}

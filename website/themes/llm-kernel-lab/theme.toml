@@ -1,0 +1,4 @@
+name = "LLM Kernel Lab"
+license = "Apache-2.0"
+description = "Minimal theme for LLM Kernel Lab project site"
+min_version = "0.80.0"

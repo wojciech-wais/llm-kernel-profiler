@@ -1,0 +1,16 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = 'LLM Kernel Lab'
+theme = 'llm-kernel-lab'
+
+[params]
+  description = "Profiling and optimization toolkit for GPU kernels in LLM inference"
+  github = "https://github.com/llm-kernel-lab/llm-kernel-lab"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false

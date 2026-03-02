@@ -1,0 +1,121 @@
+{{ define "main" }}
+<div class="container">
+
+  <div class="hero">
+    <h2>LLM Kernel Lab</h2>
+    <p>
+      Profile, benchmark, and optimize GPU kernels used in LLM inference.
+      Compare Triton vs CUDA vs cuBLAS, generate roofline analyses, and catch
+      performance regressions in CI.
+    </p>
+    <div class="badges">
+      <span>Python 3.10+</span>
+      <span>CUDA / Triton / PyTorch</span>
+      <span>NVIDIA SM 80+</span>
+      <span>Apache-2.0</span>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="feature-card">
+      <h3>Benchmark Harness</h3>
+      <p>Reproducible benchmarks for attention, matmul, MLP, LayerNorm, and quantized GEMM kernels
+         with predefined shapes for GPT-3, LLaMA, and Mistral.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Roofline Analysis</h3>
+      <p>Automatic roofline plots showing arithmetic intensity vs achieved TFLOP/s
+         with memory and compute roof lines for your GPU.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Kernel Comparison</h3>
+      <p>Side-by-side comparison of Triton, handwritten CUDA, and cuBLAS/cuDNN implementations
+         across problem shapes and GPUs.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Bottleneck Detection</h3>
+      <p>Automatic classification — memory-bound, compute-bound, or latency-bound —
+         with actionable optimization recommendations.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Nsight Integration</h3>
+      <p>Wraps Nsight Compute CLI for detailed metrics: SM efficiency, occupancy,
+         warp stall breakdown, L2 hit rates, and more.</p>
+    </div>
+    <div class="feature-card">
+      <h3>CI Regression Guard</h3>
+      <p>Built-in <code>llm-kernel-lab ci</code> command to detect performance regressions
+         in GitHub Actions or GitLab CI pipelines.</p>
+    </div>
+  </div>
+
+  <section>
+    <h2>Quick Start</h2>
+    <pre><code># Install
+pip install "llm-kernel-lab[all]"
+
+# Detect GPU
+llm-kernel-lab record-hw
+
+# Run benchmarks
+llm-kernel-lab bench \
+  --op attention \
+  --kernels flash_attn_v2_triton,sdpa_pytorch \
+  --shapes llama2_7b_short,llama2_7b_long \
+  --repetitions 100 \
+  --profile-level timing \
+  --output ./results/attn.json
+
+# Generate report
+llm-kernel-lab report \
+  --input ./results/attn.json \
+  --format markdown \
+  --out ./reports/attn_report.md</code></pre>
+  </section>
+
+  <section>
+    <h2>Architecture</h2>
+    <pre><code>┌─────────────────────────────────────────────────────────────┐
+│                      User Interfaces                        │
+│  CLI (llm-kernel-lab)  ·  Python API  ·  Reports            │
+├─────────────────────────────────────────────────────────────┤
+│                   Benchmark Orchestrator                     │
+│  Triton backend  ·  CUDA backend  ·  PyTorch backend        │
+├─────────────────────────────────────────────────────────────┤
+│                  Profiling &amp; Metrics Layer                   │
+│  CUDA events  ·  Nsight Compute  ·  FLOP/BW estimation      │
+├─────────────────────────────────────────────────────────────┤
+│                      Data &amp; Storage                          │
+│  JSON  ·  SQLite  ·  Hardware profiles                      │
+├─────────────────────────────────────────────────────────────┤
+│                 Reporting &amp; Visualization                    │
+│  Roofline plots  ·  Bottleneck analysis  ·  Recommendations │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+  </section>
+
+  <section>
+    <h2>CLI Commands</h2>
+    <table>
+      <thead>
+        <tr><th>Command</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>bench</code></td><td>Run benchmarks for kernel variants across problem shapes</td></tr>
+        <tr><td><code>report</code></td><td>Generate Markdown / HTML / JSON reports from results</td></tr>
+        <tr><td><code>compare</code></td><td>Compare performance across result files or GPUs</td></tr>
+        <tr><td><code>ci</code></td><td>Regression detection for CI pipelines</td></tr>
+        <tr><td><code>record-hw</code></td><td>Capture GPU hardware profile</td></tr>
+        <tr><td><code>list</code></td><td>List available kernels or built-in shapes</td></tr>
+        <tr><td><code>init</code></td><td>Generate a starter configuration file</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Latest Benchmark Results</h2>
+    <p>See the <a href="{{ "posts/benchmark-results/" | relURL }}">full benchmark report</a>
+       from a real-world test on 2x NVIDIA RTX 3060.</p>
+  </section>
+
+</div>
+{{ end }}

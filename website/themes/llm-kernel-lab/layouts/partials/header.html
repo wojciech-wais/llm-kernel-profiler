@@ -1,0 +1,10 @@
+<header>
+  <div class="container">
+    <h1><a href="{{ "/" | relURL }}">LLM Kernel Lab</a></h1>
+    <nav>
+      <a href="{{ "/" | relURL }}">Home</a>
+      <a href="{{ "posts/benchmark-results/" | relURL }}">Benchmark Results</a>
+      {{ with .Site.Params.github }}<a href="{{ . }}" target="_blank">GitHub</a>{{ end }}
+    </nav>
+  </div>
+</header>
